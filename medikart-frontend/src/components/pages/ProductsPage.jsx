@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import './ProductsPage.css'
+import { CartContext } from '../../context/CartContext'
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([])
@@ -8,6 +9,8 @@ const ProductsPage = () => {
   const [inStockOnly, setInStockOnly] = useState(false)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+
+  const { addToCart } = useContext(CartContext)
 
   const categories = ['All Products', 'Medicines', 'Medical Equipment']
 
@@ -143,37 +146,37 @@ const ProductsPage = () => {
     }))
   }
 
-    const filteredProducts = products.filter((product) => {
-      const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredProducts = products.filter((product) => {
+    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase())
 
-      // Filter by top category tabs
-      const matchesCategory =
-        selectedCategory === 'All Products' ||
-        (selectedCategory === 'Medicines' &&
-          (product.categories && (
-            product.categories.includes('Pain Relief') ||
-            product.categories.includes('Antibiotics') ||
-            product.categories.includes('Vitamins') ||
-            product.categories.includes('Allergy') ||
-            product.categories.includes('Digestive Health')
-          ))) ||
-        (selectedCategory === 'Medical Equipment' &&
-          (product.categories && (
-            product.categories.includes('Monitoring Devices') ||
-            product.categories.includes('Diagnostic Tools') ||
-            product.categories.includes('Respiratory Equipment')
-          )))
+    // Filter by top category tabs
+    const matchesCategory =
+      selectedCategory === 'All Products' ||
+      (selectedCategory === 'Medicines' &&
+        (product.categories && (
+          product.categories.includes('Pain Relief') ||
+          product.categories.includes('Antibiotics') ||
+          product.categories.includes('Vitamins') ||
+          product.categories.includes('Allergy') ||
+          product.categories.includes('Digestive Health')
+        ))) ||
+      (selectedCategory === 'Medical Equipment' &&
+        (product.categories && (
+          product.categories.includes('Monitoring Devices') ||
+          product.categories.includes('Diagnostic Tools') ||
+          product.categories.includes('Respiratory Equipment')
+        )))
 
-      // Filter by sidebar categories (if any selected) and filtered sidebar categories
-      const sidebarCategorySelected = Object.values(sidebarCategories).some(Boolean)
-      const matchesSidebarCategory =
-        (!sidebarCategorySelected || (product.categories && product.categories.some((cat) => sidebarCategories[cat]))) &&
-        product.categories && product.categories.some((cat) => filteredSidebarCategories[cat])
+    // Filter by sidebar categories (if any selected) and filtered sidebar categories
+    const sidebarCategorySelected = Object.values(sidebarCategories).some(Boolean)
+    const matchesSidebarCategory =
+      (!sidebarCategorySelected || (product.categories && product.categories.some((cat) => sidebarCategories[cat]))) &&
+      product.categories && product.categories.some((cat) => filteredSidebarCategories[cat])
 
-      const matchesStock = !inStockOnly || product.inStock
+    const matchesStock = !inStockOnly || product.inStock
 
-      return matchesSearch && matchesCategory && matchesSidebarCategory && matchesStock
-    })
+    return matchesSearch && matchesCategory && matchesSidebarCategory && matchesStock
+  })
 
   if (loading) {
     return <div>Loading products...</div>
@@ -253,30 +256,32 @@ const ProductsPage = () => {
         </aside>
         <section className="products">
           {filteredProducts.map((product) => (
-                <div key={product._id} className="product-card">
-                  <div className="product-image">
-                    <img src={product.imageUrl || 'src/assets/med.jpg'} alt={product.name} />
-                  </div>
-                  <div className="product-info">
-                    <div className="product-categories">
-                      {(product.categories || []).map((cat) => (
-                        <span key={cat} className="category-badge">
-                          {cat}
-                        </span>
-                      ))}
-                    </div>
-                    <h2>{product.name}</h2>
-                    <p className="brand">{product.brand || 'Unknown Brand'}</p>
-                    <p className="price">${product.price ? product.price.toFixed(2) : 'N/A'}</p>
-                    {product.requiresRx ? (
-                      <button className="btn-rx" disabled>
-                        Requires Rx
-                      </button>
-                    ) : (
-                      <button className="btn-add">Add to Cart</button>
-                    )}
-                  </div>
+            <div key={product._id} className="product-card">
+              <div className="product-image">
+                <img src={product.imageUrl || 'src/assets/med.jpg'} alt={product.name} />
+              </div>
+              <div className="product-info">
+                <div className="product-categories">
+                  {(product.categories || []).map((cat) => (
+                    <span key={cat} className="category-badge">
+                      {cat}
+                    </span>
+                  ))}
                 </div>
+                <h2>{product.name}</h2>
+                <p className="brand">{product.brand || 'Unknown Brand'}</p>
+                <p className="price">${product.price ? product.price.toFixed(2) : 'N/A'}</p>
+                {product.requiresRx ? (
+                  <button className="btn-rx" disabled>
+                    Requires Rx
+                  </button>
+                ) : (
+                  <button className="btn-add" onClick={() => addToCart(product)}>
+                    Add to Cart
+                  </button>
+                )}
+              </div>
+            </div>
           ))}
         </section>
       </div>
