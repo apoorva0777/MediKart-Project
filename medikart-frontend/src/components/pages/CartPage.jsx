@@ -26,6 +26,87 @@ const CartPage = () => {
     );
   };
 
+  const loadRazorpayScript = () => {
+    return new Promise((resolve) => {
+      const script = document.createElement("script");
+      script.src = "https://checkout.razorpay.com/v1/checkout.js";
+      script.onload = () => {
+        resolve(true);
+      };
+      script.onerror = () => {
+        resolve(false);
+      };
+      document.body.appendChild(script);
+    });
+  };
+
+  const handlePayment = async () => {
+    const res = await loadRazorpayScript();
+
+    if (!res) {
+      alert("Razorpay SDK failed to load. Are you online?");
+      return;
+    }
+
+    // Create order on backend
+    const response = await fetch("http://localhost:5000/api/payment/order", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+      body: JSON.stringify({
+        amount: getTotalPrice(),
+        receipt: "receipt_order_74394",
+      }),
+    });
+
+    const orderData = await response.json();
+
+    if (!response.ok) {
+      alert("Failed to create order. Please try again.");
+      return;
+    }
+
+    const options = {
+      key: process.env.REACT_APP_RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
+      amount: orderData.amount,
+      currency: orderData.currency,
+      name: "MediKart",
+      description: "Test Transaction",
+      order_id: orderData.id,
+      handler: async function (response) {
+        // Verify payment on backend
+        const verifyRes = await fetch("http://localhost:5000/api/payment/verify", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify(response),
+        });
+        const verifyData = await verifyRes.json();
+        if (verifyData.status === "success") {
+          alert("Payment successful!");
+          // Optionally clear cart or navigate to success page
+        } else {
+          alert("Payment verification failed. Please contact support.");
+        }
+      },
+      prefill: {
+        name: "Customer Name",
+        email: "customer@example.com",
+        contact: "9999999999",
+      },
+      theme: {
+        color: "#3399cc",
+      },
+    };
+
+    const paymentObject = new window.Razorpay(options);
+    paymentObject.open();
+  };
+
   const handleCheckout = () => {
     navigate("/checkout");
   };
@@ -41,8 +122,9 @@ const CartPage = () => {
             {cartItems.map((item) => (
               <li key={item.id} className="cart-item">
                 <div className="cart-item-details">
+                  <img src={item.imageUrl} alt={item.name} className="cart-item-image" />
                   <span className="cart-item-name">{item.name}</span>
-                  <span className="cart-item-price">${item.price.toFixed(2)}</span>
+                  <span className="cart-item-price">₹{item.price.toFixed(2)}</span>
                 </div>
                 <div>
                   <button
@@ -68,8 +150,11 @@ const CartPage = () => {
               </li>
             ))}
           </ul>
-          <div className="cart-total">Total: ${getTotalPrice().toFixed(2)}</div>
+          <div className="cart-total">Total: ₹{getTotalPrice().toFixed(2)}</div>
           <div className="cart-actions">
+            <button className="cart-button" onClick={handlePayment}>
+              Pay Now
+            </button>
             <button className="cart-button" onClick={handleCheckout}>
               Proceed to Checkout
             </button>

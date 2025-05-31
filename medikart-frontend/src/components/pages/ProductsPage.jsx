@@ -270,7 +270,7 @@ const ProductsPage = () => {
                 </div>
                 <h2>{product.name}</h2>
                 <p className="brand">{product.brand || 'Unknown Brand'}</p>
-                <p className="price">${product.price ? product.price.toFixed(2) : 'N/A'}</p>
+                <p className="price">₹{product.price ? product.price.toFixed(2) : 'N/A'}</p>
                 {product.requiresRx ? (
                   <button className="btn-rx" disabled>
                     Requires Rx

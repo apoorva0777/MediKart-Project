@@ -24,12 +24,15 @@ export const CartProvider = ({ children }) => {
       }
       const data = await response.json();
       setCartItems(
-        data.items.map((item) => ({
-          id: item.product._id,
-          name: item.product.name,
-          price: item.product.price,
-          quantity: item.quantity,
-        }))
+          data.items
+            .filter(item => item.product !== null)
+            .map((item) => ({
+              id: item.product._id,
+              name: item.product.name,
+              price: item.product.price,
+              quantity: item.quantity,
+              imageUrl: item.product.imageUrl,
+            }))
       );
     } catch (error) {
       console.error('Error fetching cart:', error);
@@ -84,12 +87,15 @@ export const CartProvider = ({ children }) => {
       }
       const data = await response.json();
       setCartItems(
-        data.items.map((item) => ({
-          id: item.product._id,
-          name: item.product.name,
-          price: item.product.price,
-          quantity: item.quantity,
-        }))
+          data.items
+            .filter(item => item.product !== null)
+            .map((item) => ({
+              id: item.product._id,
+              name: item.product.name,
+              price: item.product.price,
+              quantity: item.quantity,
+              imageUrl: item.product.imageUrl,
+            }))
       );
     } catch (error) {
       alert('Error updating cart: ' + error.message);

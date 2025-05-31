@@ -9,7 +9,7 @@ const medicinesData = [
   {
     name: 'Paracetamol 500mg',
     brand: 'MediCorp',
-    price: 5.99,
+    price: 512.5,
     categories: ['Pain Relief'],
     requiresRx: false,
     imageUrl: 'src/assets/paracetamol.jpg',
@@ -19,7 +19,7 @@ const medicinesData = [
   {
     name: 'Amoxicillin 250mg',
     brand: 'PharmaCare',
-    price: 12.5,
+    price: 85.5,
     categories: ['Antibiotics', 'Rx'],
     requiresRx: true,
     imageUrl: 'src/assets/amoxicillin.jpg',
@@ -29,7 +29,7 @@ const medicinesData = [
   {
     name: 'Vitamin C 1000mg',
     brand: 'VitaHealth',
-    price: 8.99,
+    price: 769.9,
     categories: ['Vitamins'],
     requiresRx: false,
     imageUrl: 'src/assets/vitamin-c.jpg',
@@ -39,7 +39,7 @@ const medicinesData = [
   {
     name: 'Ibuprofen 200mg',
     brand: 'MediCorp',
-    price: 6.49,
+    price: 449.5,
     categories: ['Pain Relief'],
     requiresRx: false,
     imageUrl: 'src/assets/Ibuprofen.jpg',
@@ -49,7 +49,7 @@ const medicinesData = [
   {
     name: 'Cetirizine 10mg',
     brand: 'AllergyCare',
-    price: 7.99,
+    price: 336.7,
     categories: ['Allergy'],
     requiresRx: false,
     imageUrl: 'src/assets/cetirizine.jpg',
@@ -59,7 +59,7 @@ const medicinesData = [
   {
     name: 'Aspirin 100mg',
     brand: 'HeartWell',
-    price: 4.5,
+    price: 250.8,
     categories: ['Pain Relief'],
     requiresRx: false,
     imageUrl: 'src/assets/aspirin.jpg',
@@ -69,7 +69,7 @@ const medicinesData = [
   {
     name: 'Omeprazole 20mg',
     brand: 'DigestCare',
-    price: 10.99,
+    price: 940.99,
     categories: ['Digestive Health', 'Rx'],
     requiresRx: true,
     imageUrl: 'src/assets/omeprazole.jpg',
@@ -79,7 +79,7 @@ const medicinesData = [
   {
     name: 'Multivitamin Complex',
     brand: 'VitaHealth',
-    price: 15.99,
+    price: 1368.10,
     categories: ['Vitamins'],
     requiresRx: false,
     imageUrl: 'src/assets/multivitamin.jpg',
@@ -89,7 +89,7 @@ const medicinesData = [
   {
     name: 'Digital Blood Pressure Monitor',
     brand: 'HealthTech',
-    price: 89.99,
+    price: 5044.25,
     categories: ['Monitoring Devices', 'Equipment'],
     requiresRx: false,
     imageUrl: 'src/assets/blood-pressure.jpg',
@@ -99,7 +99,7 @@ const medicinesData = [
   {
     name: 'Digital Thermometer',
     brand: 'MediTemp',
-    price: 24.99,
+    price: 300.0,
     categories: ['Diagnostic Tools', 'Equipment'],
     requiresRx: false,
     imageUrl: 'src/assets/thermometer.jpg',
@@ -109,7 +109,7 @@ const medicinesData = [
   {
     name: 'Pulse Oximeter',
     brand: 'OxyCheck',
-    price: 45.99,
+    price: 890.99,
     categories: ['Monitoring Devices', 'Equipment'],
     requiresRx: false,
     imageUrl: 'src/assets/pulse-oximeter.jpg',
@@ -119,7 +119,7 @@ const medicinesData = [
   {
     name: 'Stethoscope',
     brand: 'CardioSound',
-    price: 125.0,
+    price: 1255.0,
     categories: ['Diagnostic Tools', 'Equipment', 'Rx'],
     requiresRx: true,
     imageUrl: 'src/assets/stethoscope.jpg',
@@ -129,7 +129,7 @@ const medicinesData = [
   {
     name: 'Nebulizer Machine',
     brand: 'RespiCare',
-    price: 199.99,
+    price: 3199.99,
     categories: ['Respiratory Equipment', 'Equipment', 'Rx'],
     requiresRx: true,
     imageUrl: 'src/assets/nebulizer.jpg',
@@ -139,7 +139,7 @@ const medicinesData = [
   {
     name: 'Glucose Meter Kit',
     brand: 'DiabetesCheck',
-    price: 34.99,
+    price: 1934.99,
     categories: ['Monitoring Devices', 'Equipment'],
     requiresRx: false,
     imageUrl: 'src/assets/glucose-meter.jpg',

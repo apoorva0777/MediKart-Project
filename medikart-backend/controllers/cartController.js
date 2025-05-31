@@ -1,7 +1,7 @@
 const Cart = require('../models/Cart');
 const Medicine = require('../models/Medicine');
 
-// Get current user's cart
+
 exports.getCart = async (req, res) => {
   try {
     const cart = await Cart.findOne({ user: req.user._id }).populate('items.product');
@@ -14,7 +14,7 @@ exports.getCart = async (req, res) => {
   }
 };
 
-// Add item to cart or update quantity
+
 exports.addToCart = async (req, res) => {
   const { productId, quantity } = req.body;
   if (!productId || !quantity || quantity < 1) {
@@ -43,7 +43,7 @@ exports.addToCart = async (req, res) => {
   }
 };
 
-// Update item quantity or remove item
+
 exports.updateCartItem = async (req, res) => {
   const { productId, quantity } = req.body;
   if (!productId || quantity === undefined) {
