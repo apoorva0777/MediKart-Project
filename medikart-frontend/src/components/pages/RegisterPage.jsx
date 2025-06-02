@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaUser, FaEnvelope, FaPhone, FaLock } from 'react-icons/fa'
-import './AuthForm.css'
+import './LoginForm.css'
 import { AuthContext } from '../../context/AuthContext'
 
 const RegisterPage = () => {
@@ -43,7 +43,7 @@ const RegisterPage = () => {
         <img src="src/assets/register-image.jpg" alt="Register" />
       </div>
       <div className="auth-form">
-        <h2>Registration form</h2>
+        <h1>Registration form</h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor="username">username</label>
           <div className="input-group">

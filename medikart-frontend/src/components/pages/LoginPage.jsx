@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaEnvelope, FaLock } from 'react-icons/fa'
-import './AuthForm.css'
+import './LoginForm.css'
 import { AuthContext } from '../../context/AuthContext'
 
 const LoginPage = () => {
@@ -41,7 +41,7 @@ const LoginPage = () => {
         <img src="src/assets/login-image.jpg" alt="Login" />
       </div>
       <div className="auth-form">
-        <h2>Login form</h2>
+        <h1>Login form</h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor="email">email</label>
           <div className="input-group">

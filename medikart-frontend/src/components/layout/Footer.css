@@ -1,7 +1,35 @@
 .footer {
-  background-color: #1f632f;;
+  background-color: #1b5422;
   color: white;
-  padding: 1rem 0;
-  text-align: center;
-  margin-top: 2rem;
+  padding: 1rem 2rem;
+  position: relative;
+  font-family: 'Poppins', sans-serif;
+}
+
+.footer .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer p {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.social-iconss {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-iconss a {
+  color: white;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.social-iconss a:hover {
+  color: #a3d9a5;
 }
