@@ -72,7 +72,7 @@
 
 .image-section {
   position: relative;
-  max-width: 50%;
+  max-width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -81,7 +81,7 @@
 .image-section img {
   max-width: 100%;
   border-radius: 20px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  box-shadow: 0 0 15px rgba(0, 4, 0, 5);
 }
 
 .arrow {

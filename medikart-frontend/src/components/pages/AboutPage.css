@@ -7,7 +7,7 @@
 }
 
 .about-left {
-  background: linear-gradient(135deg, #59ab65 0%, #044e19 100%);
+  background: linear-gradient(135deg, #59ab65 0%, #04651f 100%);
   color: white;
   flex: 1;
   padding: 3rem 2rem;
@@ -46,4 +46,5 @@
   max-width: 100%;
   border-radius: 8px;
   box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+  height: 100%;
 }

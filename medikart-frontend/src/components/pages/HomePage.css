@@ -6,7 +6,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 3rem 5rem;
-  background: linear-gradient(135deg, #9eb1a1 0%, #909792 100%);
+  background: linear-gradient(135deg, #324b36 0%, #aae0b9 100%);
   min-height: 80vh;
   font-family: 'Poppins', sans-serif;
   color: #ffffff;
@@ -42,7 +42,7 @@
 }
 
 .btn-shop-now:hover {
-  background-color: #2b8736;
+  background-color: #29612f;
   box-shadow: 0 6px 20px rgba(123, 152, 124, 0.8);
 }
 

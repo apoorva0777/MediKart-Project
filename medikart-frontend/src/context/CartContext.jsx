@@ -25,15 +25,15 @@ export const CartProvider = ({ children }) => {
       }
       const data = await response.json();
       setCartItems(
-          data.items
-            .filter(item => item.product !== null)
-            .map((item) => ({
-              id: item.product._id,
-              name: item.product.name,
-              price: item.product.price,
-              quantity: item.quantity,
-              imageUrl: item.product.imageUrl,
-            }))
+        data.items
+          .filter(item => item.product !== null)
+          .map(item => ({
+            id: item.product._id,
+            name: item.product.name,
+            price: item.product.price,
+            quantity: item.quantity,
+            imageUrl: item.product.imageUrl,
+          }))
       );
     } catch (error) {
       console.error('Error fetching cart:', error);
@@ -88,23 +88,47 @@ export const CartProvider = ({ children }) => {
       }
       const data = await response.json();
       setCartItems(
-          data.items
-            .filter(item => item.product !== null)
-            .map((item) => ({
-              id: item.product._id,
-              name: item.product.name,
-              price: item.product.price,
-              quantity: item.quantity,
-              imageUrl: item.product.imageUrl,
-            }))
+        data.items
+          .filter(item => item.product !== null)
+          .map(item => ({
+            id: item.product._id,
+            name: item.product.name,
+            price: item.product.price,
+            quantity: item.quantity,
+            imageUrl: item.product.imageUrl,
+          }))
       );
     } catch (error) {
       alert('Error updating cart: ' + error.message);
     }
   };
 
+  const clearCart = async () => {
+    if (!user) {
+      alert('Please login to clear cart');
+      return;
+    }
+    try {
+      const response = await fetch('http://localhost:5000/api/cart/clear', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      if (!response.ok) {
+        throw new Error('Failed to clear cart');
+      }
+      setCartItems([]);
+    } catch (error) {
+      alert('Error clearing cart: ' + error.message);
+    }
+  };
+
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, updateCartItem, fetchCart }}>
+    <CartContext.Provider
+      value={{ cartItems, addToCart, updateCartItem, clearCart, fetchCart }}
+    >
       {children}
     </CartContext.Provider>
   );

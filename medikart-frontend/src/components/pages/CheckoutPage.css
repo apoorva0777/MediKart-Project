@@ -1,0 +1,123 @@
+.checkout-container {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,5,0,5);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+}
+
+.checkout-header {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  text-align: center;
+  color: #2c3e50;
+}
+
+.order-summary {
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 20px;
+  margin-bottom: 30px;
+}
+
+.order-summary h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 8px;
+  color: #34495e;
+}
+
+.cart-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.cart-item-image {
+  width: 70px;
+  height: 70px;
+  object-fit: cover;
+  border-radius: 6px;
+  margin-right: 20px;
+  border: 1px solid #ccc;
+}
+
+.cart-item-details {
+  flex-grow: 1;
+}
+
+.cart-item-name {
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 5px;
+  color: #2c3e50;
+}
+
+.cart-item-quantity {
+  font-size: 14px;
+  color: #7f8c8d;
+}
+
+.cart-item-price {
+  font-weight: 700;
+  font-size: 16px;
+  color: #27ae60;
+  margin-left: 15px;
+}
+
+.total-amount {
+  font-size: 22px;
+  font-weight: 700;
+  text-align: right;
+  margin-top: 20px;
+  color: #e74c3c;
+}
+
+.payment-section {
+  text-align: center;
+}
+
+.payment-button {
+  background-color: #0c952e;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.payment-button:hover:not(:disabled) {
+  background-color: #035024;
+}
+
+.payment-button:disabled {
+  background-color: #95a5a6;
+  cursor: not-allowed;
+}
+
+.order-confirmed {
+  text-align: center;
+  padding: 40px 20px;
+  background-color: #dff0d8;
+  border: 1px solid #3c763d;
+  border-radius: 8px;
+  color: #3c763d;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.order-confirmed p {
+  font-size: 18px;
+  margin-top: 15px;
+  color: #2d572c;
+}

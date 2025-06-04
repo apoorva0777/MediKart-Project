@@ -69,7 +69,7 @@ const CartPage = () => {
     }
 
     const options = {
-      key: process.env.REACT_APP_RAZORPAY_KEY_ID, // Enter the Key ID generated from the Dashboard
+      key: process.env.REACT_APP_RAZORPAY_KEY_ID, 
       amount: orderData.amount,
       currency: orderData.currency,
       name: "MediKart",
@@ -88,7 +88,8 @@ const CartPage = () => {
         const verifyData = await verifyRes.json();
         if (verifyData.status === "success") {
           alert("Payment successful!");
-          // Optionally clear cart or navigate to success page
+          clearCart();
+          // Optionally navigate to success page
         } else {
           alert("Payment verification failed. Please contact support.");
         }
@@ -115,7 +116,7 @@ const CartPage = () => {
     <div className="cart-container">
       <h1 className="cart-header">Your Cart</h1>
       {cartItems.length === 0 ? (
-        <p>Your cart is empty.</p>
+        <p className="cart-empty-message">Your cart is empty.</p>
       ) : (
         <>
           <ul className="cart-items">
@@ -152,9 +153,9 @@ const CartPage = () => {
           </ul>
           <div className="cart-total">Total: ₹{getTotalPrice().toFixed(2)}</div>
           <div className="cart-actions">
-            <button className="cart-button" onClick={handlePayment}>
+            {/* <button className="cart-button" onClick={handlePayment}>
               Pay Now
-            </button>
+            </button> */}
             <button className="cart-button" onClick={handleCheckout}>
               Proceed to Checkout
             </button>

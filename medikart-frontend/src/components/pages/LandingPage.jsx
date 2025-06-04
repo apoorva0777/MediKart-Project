@@ -9,21 +9,21 @@ const slides = [
     title: 'Healthcare Made Simple & Safe',
     description:
       'Your trusted partner for medicines and healthcare needs.',
-    imageUrl: '/src/assets/med.jpg',
+    imageUrl: '/src/assets/stethoscope.jpg',
   },
   {
     id: 2,
     title: 'INNOVATIVE SOLUTIONS FOR YOUR NEEDS',
     description:
       'Praesent commodo cursus magna, vel scelerisque nisl consectetur et.',
-    imageUrl: '/src/assets/expert2.jpg',
+    imageUrl: '/src/assets/paracetamol.jpg',
   },
   {
     id: 3,
     title: 'DEDICATED TO YOUR SUCCESS',
     description:
       'Donec ullamcorper nulla non metus auctor fringilla.',
-    imageUrl: '/src/assets/expert3.jpg',
+    imageUrl: '/src/assets/pulse-oximeter.jpg',
   },
 ]
 

@@ -1,12 +1,15 @@
 import React, { useContext, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext';
 import { AuthContext } from '../../context/AuthContext';
+import './CheckoutPage.css';
 
 const CheckoutPage = () => {
   const { cartItems, clearCart } = useContext(CartContext);
   const { user } = useContext(AuthContext);
   const [loading, setLoading] = useState(false);
   const [orderConfirmed, setOrderConfirmed] = useState(false);
+  const navigate = useNavigate();
 
   const loadRazorpayScript = () => {
     return new Promise((resolve) => {
@@ -76,15 +79,16 @@ const CheckoutPage = () => {
             body: JSON.stringify(response),
           });
           const verifyData = await verifyResponse.json();
-          if (verifyResponse.ok && verifyData.status === 'success') {
-            alert('Payment successful! Thank you for your purchase.');
-            clearCart();
-            setOrderConfirmed(true);
-          } else {
-            alert('Payment verification failed. Please contact support.');
-          }
-          setLoading(false);
-        },
+            if (verifyResponse.ok && verifyData.status === 'success') {
+              alert('Payment successful! Thank you for your purchase.');
+              clearCart();
+              setOrderConfirmed(true);
+              navigate('/cart');
+            } else {
+              alert('Payment verification failed. Please contact support.');
+            }
+            setLoading(false);
+          },
         prefill: {
           email: user.email,
         },
@@ -108,20 +112,45 @@ const CheckoutPage = () => {
 
   if (orderConfirmed) {
     return (
-      <div>
-        <h1>Order Confirmed</h1>
-        <p>Thank you for your purchase! Your order has been successfully placed.</p>
+      <div className="checkout-container">
+        <div className="order-confirmed">
+          <h1>Order Confirmed</h1>
+          <p>Thank you for your purchase! Your order has been successfully placed.</p>
+        </div>
       </div>
     );
   }
 
+  const totalAmount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
+
   return (
-    <div>
-      <h1>Checkout</h1>
-      <p>Total Amount: ₹{cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0)}</p>
-      <button onClick={handlePayment} disabled={loading}>
-        {loading ? 'Processing...' : 'Pay with Razorpay'}
-      </button>
+    <div className="checkout-container">
+      <h1 className="checkout-header">Checkout</h1>
+
+      <div className="order-summary">
+        <h2>Order Summary</h2>
+        {cartItems.length === 0 ? (
+          <p>Your cart is empty.</p>
+        ) : (
+          cartItems.map((item) => (
+            <div key={item.id} className="cart-item">
+              <img src={item.imageUrl} alt={item.name} className="cart-item-image" />
+              <div className="cart-item-details">
+                <div className="cart-item-name">{item.name}</div>
+                <div className="cart-item-quantity">Quantity: {item.quantity}</div>
+              </div>
+              <div className="cart-item-price">₹{item.price * item.quantity}</div>
+            </div>
+          ))
+        )}
+        <div className="total-amount">Total Amount: ₹{totalAmount}</div>
+      </div>
+
+      <div className="payment-section">
+        <button className="payment-button" onClick={handlePayment} disabled={loading || cartItems.length === 0}>
+          {loading ? 'Processing...' : 'Pay with Razorpay'}
+        </button>
+      </div>
     </div>
   );
 };
