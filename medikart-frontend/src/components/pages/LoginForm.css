@@ -47,24 +47,29 @@
 .input-group {
   position: relative;
   margin-bottom: 1.5rem;
+  padding: 0.75rem;
+  padding-left: 1rem;
+  
 }
 
 .input-icon {
   position: absolute;
   top: 50%;
-  left: 2.5rem;
+  left: -1rem;
   transform: translateY(-50%);
   color: #888;
 }
 
 .auth-form input {
   width: 100%;
-  padding: 0.75rem 0.75rem 0.75rem 3.5rem;
+  /* padding: 0.75rem;
+  padding-left: 2.5rem; */
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1rem;
   height: 3.5rem;
   box-sizing: border-box;
+
 }
 
 .forgot-password {
@@ -91,12 +96,6 @@
 
 .btn-primary:hover {
   background-color: #279651;
-}
-
-.demo-credentials {
-  margin-top: 1.5rem;
-  font-size: 0.875rem;
-  color: #555;
 }
 
 .signup-link {
