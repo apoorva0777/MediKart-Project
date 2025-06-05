@@ -2,12 +2,12 @@
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
-  background-color: #f9f9f9;
-  color: #333;
+  background-color: var(--background-color);
+  color: var(--text-color);
 }
 
 a {
-  color: #2a9d8f;
+  color: var(--link-color);
   text-decoration: none;
 }
 
@@ -19,4 +19,24 @@ a:hover {
   max-width: 1200px;
   margin: 0 auto;
   padding: 1rem;
+}
+
+/* Light theme variables */
+:root {
+  --background-color: #f9f9f9;
+  --text-color: #333;
+  --link-color: #2a9d8f;
+  --button-bg-color: #2980b9;
+  --button-text-color: #fff;
+  --button-hover-bg-color: #3498db;
+}
+
+/* Dark theme variables */
+[data-theme="dark"] {
+  --background-color: #121212;
+  --text-color: #e0e0e0;
+  --link-color: #66ccff;
+  --button-bg-color: #1e90ff;
+  --button-text-color: #fff;
+  --button-hover-bg-color: #5599ff;
 }

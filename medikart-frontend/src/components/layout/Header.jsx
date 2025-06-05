@@ -4,10 +4,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCartShopping } from '@fortawesome/free-solid-svg-icons'
 import './Header.css'
 import { AuthContext } from '../../context/AuthContext'
+import { ThemeContext } from '../../context/ThemeContext'
 
 const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const { user, logout } = useContext(AuthContext)
+  const { theme, toggleTheme } = useContext(ThemeContext)
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -67,6 +69,21 @@ const Header = () => {
         </nav>
         <button className="mobile-menu-toggle" onClick={toggleMobileMenu}>
           {mobileMenuOpen ? 'Close' : 'Menu'}
+        </button>
+        <button
+          onClick={toggleTheme}
+          style={{
+            marginLeft: 'auto',
+            padding: '8px 16px',
+            backgroundColor: 'var(--button-bg-color)',
+            color: 'var(--button-text-color)',
+            border: 'none',
+            borderRadius: '4px',
+            cursor: 'pointer',
+          }}
+          aria-label="Toggle light/dark theme"
+        >
+          {theme === 'light' ? 'Dark Mode' : 'Light Mode'}
         </button>
       </div>
     </header>
