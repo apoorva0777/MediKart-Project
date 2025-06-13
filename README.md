@@ -99,14 +99,3 @@ medikart-frontend/
 - `PORT` - Backend server port (default 5000)
 - `JWT_SECRET` - Secret key for JWT authentication
 
-## Contributing
-
-Contributions are welcome! Please open issues or submit pull requests for improvements.
-
-## License
-
-This project is licensed under the ISC License.
-
-## Contact
-
-For any inquiries, please contact the project maintainer.
