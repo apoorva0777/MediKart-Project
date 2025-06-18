@@ -1,4 +1,4 @@
-# MediKart
+# MediKart - A Full-Stack Pharmacy Web App
 
 MediKart is a full-stack web application for online medicine shopping. It provides users with a seamless experience to browse, add to cart, and purchase medicines. The application includes user authentication, cart management, and payment integration.
 
