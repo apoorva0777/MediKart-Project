@@ -5,11 +5,6 @@ MediKart is a full-stack web application for online medicine shopping. It provid
 
 ---
 
-## 🚀 Live Demo
-
-> Coming Soon — [Deploy with Render/Vercel & MongoDB Atlas]
-
----
 
 ## 📽️ Demo Video
 
