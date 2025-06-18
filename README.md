@@ -2,6 +2,12 @@
 
 MediKart is a full-stack web application for online medicine shopping. It provides users with a seamless experience to browse, add to cart, and purchase medicines. The application includes user authentication, cart management, and payment integration.
 
+
+## 🧪 Demo Video
+
+<video src="https://github.com/user-attachments/assets/a7d2c71a-ffd6-485c-88e0-239ad1c43453" controls width="600"></video>
+
+
 ## Features
 
 - User registration and authentication
