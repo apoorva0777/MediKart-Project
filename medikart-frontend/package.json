@@ -1,5 +1,5 @@
 {
-  "name": "health-haven-frontend",
+  "name": "MediKart-frontend",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
