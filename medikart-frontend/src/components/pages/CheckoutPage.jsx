@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../../context/CartContext';
 import { AuthContext } from '../../context/AuthContext';
 import './CheckoutPage.css';
+import BASE_URL from '../../utils/api';
 
 const CheckoutPage = () => {
   const { cartItems, clearCart } = useContext(CartContext);
@@ -44,7 +45,7 @@ const CheckoutPage = () => {
 
     try {
       // Create order on backend
-      const orderResponse = await fetch('http://localhost:5000/api/payment/create-order', {
+      const orderResponse = await fetch(`{BASE_URL}/api/payment/create-order`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -70,7 +71,7 @@ const CheckoutPage = () => {
         order_id: orderData.id,
         handler: async function (response) {
           // Verify payment on backend
-          const verifyResponse = await fetch('http://localhost:5000/api/payment/verify-payment', {
+          const verifyResponse = await fetch(`{BASE_URL}/api/payment/verify-payment`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',

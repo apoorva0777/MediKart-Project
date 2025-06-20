@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react'
 import './ProductsPage.css'
 import { CartContext } from '../../context/CartContext'
+import BASE_URL from '../../utils/api';
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([])
@@ -18,7 +19,7 @@ const ProductsPage = () => {
     const fetchMedicines = async () => {
       try {
         setLoading(true)
-        const response = await fetch('http://localhost:5000/api/medicines')
+        const response = await fetch(`${BASE_URL}/api/medicines`)
         if (!response.ok) {
           throw new Error('Failed to fetch medicines')
         }

@@ -1,5 +1,6 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
 import { AuthContext } from './AuthContext';
+import BASE_URL from '../utils/api';
 
 export const CartContext = createContext();
 
@@ -13,11 +14,11 @@ export const CartProvider = ({ children }) => {
       return;
     }
     try {
-      const response = await fetch('http://localhost:5000/api/cart', {
+      const response = await fetch(`${BASE_URL}/api/cart`, {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${user.token}`,
+          Authorization: 'Bearer ' + user.token,
         },
       });
       if (!response.ok) {
@@ -51,11 +52,11 @@ export const CartProvider = ({ children }) => {
       return;
     }
     try {
-      const response = await fetch('http://localhost:5000/api/cart/add', {
+      const response = await fetch(`${BASE_URL}/api/cart/add`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${user.token}`,
+          Authorization: 'Bearer ' + user.token,
         },
         body: JSON.stringify({ productId: product.id || product._id, quantity }),
       });
@@ -63,7 +64,7 @@ export const CartProvider = ({ children }) => {
         throw new Error('Failed to add item to cart');
       }
       await fetchCart();
-      alert(`${product.name} added to cart`);
+      alert(product.name + ' added to cart');
     } catch (error) {
       alert('Error adding item to cart: ' + error.message);
     }
@@ -75,11 +76,11 @@ export const CartProvider = ({ children }) => {
       return;
     }
     try {
-      const response = await fetch('http://localhost:5000/api/cart/update', {
+      const response = await fetch(`${BASE_URL}/api/cart/update`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${user.token}`,
+          Authorization: 'Bearer ' + user.token,
         },
         body: JSON.stringify({ productId, quantity }),
       });
@@ -109,11 +110,11 @@ export const CartProvider = ({ children }) => {
       return;
     }
     try {
-      const response = await fetch('http://localhost:5000/api/cart/clear', {
+      const response = await fetch(`${BASE_URL}/api/cart/clear`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${user.token}`,
+          Authorization: 'Bearer ' + user.token,
         },
       });
       if (!response.ok) {
