@@ -40,38 +40,36 @@ const CheckoutPage = () => {
       return;
     }
 
-    // Calculate total amount in rupees (not multiplied by 100)
     const amount = cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
     try {
-      // Create order on backend
-      const orderResponse = await fetch(`{BASE_URL}/api/payment/create-order`, {
+      const orderResponse = await fetch(`${BASE_URL}/api/payment/create-order`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           Authorization: `Bearer ${user.token}`,
         },
-        body: JSON.stringify({ amount }), // amount in rupees
+        body: JSON.stringify({ amount }), 
       });
 
-      const orderData = await orderResponse.json();
-
       if (!orderResponse.ok) {
-        alert('Failed to create order. Please try again.');
+        const errorText = await orderResponse.text();
+        alert('Failed to create order. Please try again. ' + errorText);
         setLoading(false);
         return;
       }
 
+      const orderData = await orderResponse.json();
+
       const options = {
-        key: window.process?.env?.REACT_APP_RAZORPAY_KEY_ID || 'rzp_test_UC8ozWhDmsJEYa', // Use env variable or fallback key
+        key: window.process?.env?.REACT_APP_RAZORPAY_KEY_ID || 'rzp_test_UC8ozWhDmsJEYa', 
         amount: orderData.amount,
         currency: orderData.currency,
         name: 'MediKart',
         description: 'Purchase from MediKart',
         order_id: orderData.id,
         handler: async function (response) {
-          // Verify payment on backend
-          const verifyResponse = await fetch(`{BASE_URL}/api/payment/verify-payment`, {
+          const verifyResponse = await fetch(`${BASE_URL}/api/payment/verify-payment`, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -79,8 +77,16 @@ const CheckoutPage = () => {
             },
             body: JSON.stringify(response),
           });
+
+          if (!verifyResponse.ok) {
+            const errorText = await verifyResponse.text();
+            alert('Payment verification failed. Please contact support. ' + errorText);
+            setLoading(false);
+            return;
+          }
+
           const verifyData = await verifyResponse.json();
-            if (verifyResponse.ok && verifyData.status === 'success') {
+            if (verifyData.status === 'success') {
               alert('Payment successful! Thank you for your purchase.');
               clearCart();
               setOrderConfirmed(true);
@@ -98,7 +104,6 @@ const CheckoutPage = () => {
         },
       };
 
-      // Fix for process is not defined error in frontend
       if (!window.process) {
         window.process = { env: { REACT_APP_RAZORPAY_KEY_ID: 'rzp_test_UC8ozWhDmsJEYa' } };
       }

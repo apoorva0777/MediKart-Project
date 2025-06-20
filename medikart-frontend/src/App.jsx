@@ -16,7 +16,7 @@ import LandingPage from './components/pages/LandingPage'
 
 function App() {
   const location = useLocation()
-  const [showLanding, setShowLanding] = useState(false) // temporarily disable landing page for testing
+  const [showLanding, setShowLanding] = useState(false) 
 
   const handleEnter = () => {
     setShowLanding(false)

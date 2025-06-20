@@ -38,7 +38,6 @@ const ProductsPage = () => {
     setSearchTerm(e.target.value)
   }
 
-  // State for sidebar categories filtered by top category tabs
   const [filteredSidebarCategories, setFilteredSidebarCategories] = React.useState({
     'Pain Relief': true,
     Antibiotics: true,
@@ -87,7 +86,6 @@ const ProductsPage = () => {
         'Diagnostic Tools': true,
         'Respiratory Equipment': true,
       })
-      // Reset sidebar category selections when switching top tab
       setSidebarCategories({
         'Pain Relief': false,
         Antibiotics: false,
@@ -99,7 +97,6 @@ const ProductsPage = () => {
         'Respiratory Equipment': false,
       })
     } else {
-      // All Products selected
       setFilteredSidebarCategories({
         'Pain Relief': true,
         Antibiotics: true,
@@ -110,7 +107,6 @@ const ProductsPage = () => {
         'Diagnostic Tools': true,
         'Respiratory Equipment': true,
       })
-      // Reset sidebar category selections when switching top tab
       setSidebarCategories({
         'Pain Relief': false,
         Antibiotics: false,
@@ -128,7 +124,6 @@ const ProductsPage = () => {
     setInStockOnly(!inStockOnly)
   }
 
-  // New state for sidebar category filters
   const [sidebarCategories, setSidebarCategories] = React.useState({
     'Pain Relief': false,
     Antibiotics: false,
@@ -150,7 +145,6 @@ const ProductsPage = () => {
   const filteredProducts = products.filter((product) => {
     const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase())
 
-    // Filter by top category tabs
     const matchesCategory =
       selectedCategory === 'All Products' ||
       (selectedCategory === 'Medicines' &&
@@ -168,7 +162,6 @@ const ProductsPage = () => {
           product.categories.includes('Respiratory Equipment')
         )))
 
-    // Filter by sidebar categories (if any selected) and filtered sidebar categories
     const sidebarCategorySelected = Object.values(sidebarCategories).some(Boolean)
     const matchesSidebarCategory =
       (!sidebarCategorySelected || (product.categories && product.categories.some((cat) => sidebarCategories[cat]))) &&
