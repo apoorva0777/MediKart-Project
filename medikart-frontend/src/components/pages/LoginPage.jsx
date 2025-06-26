@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FaEnvelope, FaLock } from 'react-icons/fa'
 import './LoginForm.css'
 import { AuthContext } from '../../context/AuthContext'
+import BASE_URL from '../../utils/api';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('')
@@ -16,7 +17,7 @@ const LoginPage = () => {
     setError('')
 
     try {
-      const response = await fetch('/api/auth/login', {
+      const response = await fetch(`${BASE_URL}/api/auth/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email, password }),
