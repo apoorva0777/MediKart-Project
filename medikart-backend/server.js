@@ -3,25 +3,32 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
-
 // Load environment variables from .env file
 dotenv.config();
 
 const app = express();
 
-const allowedOrigins = [process.env.FRONTEND_URL || 'https://medikart-project.vercel.app', 'http://localhost:5173', 'https://medikart-backend.onrender.com'];
+// Define allowed origins
+const allowedOrigins = [
+  process.env.FRONTEND_URL || 'https://medikart-project.vercel.app', // Deployed frontend
+  'http://localhost:5173',                                           // Local dev (Vite)
+];
 
+// Configure CORS
 app.use(cors({
-  origin: function(origin, callback){
-    // allow requests with no origin like mobile apps or curl requests
-    if(!origin) return callback(null, true);
-    if(allowedOrigins.indexOf(origin) === -1){
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
+  origin: function(origin, callback) {
+    // Allow requests with no origin (like curl or server-to-server requests)
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      return callback(null, true);
     }
-    return callback(null, true);
+
+    console.error(`❌ CORS blocked request from origin: ${origin}`);
+    const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+    return callback(new Error(msg), false);
   },
-  credentials: true
+  credentials: true, // Allow cookies/auth headers if needed
 }));
 
 // Middleware
