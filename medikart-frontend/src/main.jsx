@@ -6,7 +6,6 @@ import './index.css'
 import { AuthProvider } from './context/AuthContext'
 import { CartProvider } from './context/CartContext'
 import { ThemeProvider } from './context/ThemeContext'
-import { SpeedInsights } from "@vercel/speed-insights/react"
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
