@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import "./HomePage.css";
 import { AuthContext } from "../../context/AuthContext";
-import medImage from "../../assets/med.jpg";
+import medImage from "/images/med.jpg";
 
 
 const HomePage = () => {

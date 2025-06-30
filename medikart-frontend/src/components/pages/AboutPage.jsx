@@ -1,6 +1,6 @@
 import React from 'react'
 import './AboutPage.css'
-import medImage from '../../assets/logo.png'
+import medImage from '/images/logo.png'
 
 const AboutPage = () => {
   return (

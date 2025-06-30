@@ -4,7 +4,7 @@ import { FaEnvelope, FaLock } from 'react-icons/fa'
 import './LoginForm.css'
 import { AuthContext } from '../../context/AuthContext'
 import BASE_URL from '../../utils/api';
-import loginImage from '../../assets/login-image.jpg';
+import loginImage from '/images/login-image.jpg';
 
 
 const LoginPage = () => {

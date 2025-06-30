@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import './ProductsPage.css'
 import { CartContext } from '../../context/CartContext'
 import BASE_URL from '../../utils/api';
-import fallbackImage from '../../assets/med.jpg';
+import fallbackImage from '/images/med.jpg';
 
 
 const ProductsPage = () => {

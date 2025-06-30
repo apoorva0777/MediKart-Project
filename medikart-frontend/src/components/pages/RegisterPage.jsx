@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FaUser, FaEnvelope, FaPhone, FaLock } from 'react-icons/fa'
 import './LoginForm.css'
 import { AuthContext } from '../../context/AuthContext'
-import registerImage from '../../assets/register-image.jpg';
+import registerImage from '/images/register-image.jpg';
 
 
 const RegisterPage = () => {

@@ -27,7 +27,7 @@ const Header = () => {
       <div className="container header-container">
         <div className="logo">
           <Link to="/" className="logo-link">
-            <img src="/src/assets/logo.png" alt="MediKart Logo" className="logo-image" />
+            <img src="/images/logo.png" alt="MediKart Logo" className="logo-image" />
             <span className="logo-text">MediKart</span>
           </Link>
         </div>
