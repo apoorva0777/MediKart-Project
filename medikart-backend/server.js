@@ -8,25 +8,23 @@ dotenv.config();
 
 const app = express();
 
-// Define allowed origins
-const allowedOrigins = [
-  process.env.FRONTEND_URL || 'https://medikart-project.vercel.app', // Deployed frontend
-  'http://localhost:5173',                                           // Local dev (Vite)
-];
-
-// Configure CORS
+// Configure CORS with regex-based origin check
 app.use(cors({
   origin: function(origin, callback) {
-    // Allow requests with no origin (like curl or server-to-server requests)
+    console.log(`🔎 CORS request from origin: ${origin}`);
+    
+    // Allow requests with no origin (e.g., server-to-server, curl)
     if (!origin) return callback(null, true);
 
-    if (allowedOrigins.includes(origin)) {
+    const allowedProduction = /^https:\/\/medikart-project(\-[\w\d]+)?\.vercel\.app$/; // main + previews
+    const localhostPattern = /^http:\/\/localhost:5173$/;                              // local dev
+
+    if (allowedProduction.test(origin) || localhostPattern.test(origin)) {
       return callback(null, true);
     }
 
     console.error(`❌ CORS blocked request from origin: ${origin}`);
-    const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-    return callback(new Error(msg), false);
+    return callback(new Error('CORS policy does not allow access from the specified origin.'), false);
   },
   credentials: true, // Allow cookies/auth headers if needed
 }));
