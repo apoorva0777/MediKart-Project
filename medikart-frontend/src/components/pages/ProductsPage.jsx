@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react'
 import './ProductsPage.css'
 import { CartContext } from '../../context/CartContext'
 import BASE_URL from '../../utils/api';
+import fallbackImage from '../../assets/med.jpg';
+
 
 const ProductsPage = () => {
   const [products, setProducts] = useState([])
@@ -252,7 +254,7 @@ const ProductsPage = () => {
           {filteredProducts.map((product) => (
             <div key={product._id} className="product-card">
               <div className="product-image">
-                <img src={product.imageUrl || 'src/assets/med.jpg'} alt={product.name} />
+                <img src={product.imageUrl || fallbackImage} alt={product.name} />
               </div>
               <div className="product-info">
                 <div className="product-categories">

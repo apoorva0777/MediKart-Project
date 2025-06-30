@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FaUser, FaEnvelope, FaPhone, FaLock } from 'react-icons/fa'
 import './LoginForm.css'
 import { AuthContext } from '../../context/AuthContext'
+import registerImage from '../../assets/register-image.jpg';
+
 
 const RegisterPage = () => {
   const [username, setUsername] = useState('')
@@ -40,7 +42,7 @@ const RegisterPage = () => {
   return (
     <div className="auth-container">
       <div className="auth-image">
-        <img src="src/assets/register-image.jpg" alt="Register" />
+        <img src={registerImage} alt="Register" />
       </div>
       <div className="auth-form">
         <h1>Registration form</h1>

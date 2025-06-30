@@ -4,6 +4,8 @@ import { FaEnvelope, FaLock } from 'react-icons/fa'
 import './LoginForm.css'
 import { AuthContext } from '../../context/AuthContext'
 import BASE_URL from '../../utils/api';
+import loginImage from '../../assets/login-image.jpg';
+
 
 const LoginPage = () => {
   const [email, setEmail] = useState('')
@@ -39,7 +41,7 @@ const LoginPage = () => {
   return (
     <div className="auth-container">
       <div className="auth-image">
-        <img src="src/assets/login-image.jpg" alt="Login" />
+        <img src={loginImage} alt="Login" />
       </div>
       <div className="auth-form">
         <h1>Login form</h1>

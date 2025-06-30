@@ -31,7 +31,7 @@ const AboutPage = () => {
         </ul>
       </div>
       <div className="about-right">
-        <img src={medImage} alt="Health Haven Meds Hub" />
+        <img src={medImage} alt="med" />
       </div>
     </div>
   )
