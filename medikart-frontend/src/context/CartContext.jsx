@@ -14,6 +14,7 @@ export const CartProvider = ({ children }) => {
       return;
     }
     try {
+      console.log('Fetching cart with token:', user.token);
       const response = await fetch(`${BASE_URL}/api/cart`, {
         method: 'GET',
         headers: {
@@ -21,6 +22,7 @@ export const CartProvider = ({ children }) => {
           Authorization: 'Bearer ' + user.token,
         },
       });
+      console.log('Cart fetch response status:', response.status);
       if (!response.ok) {
         throw new Error('Failed to fetch cart');
       }

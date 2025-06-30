@@ -3,12 +3,13 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
 
+
 // Load environment variables from .env file
 dotenv.config();
 
 const app = express();
 
-const allowedOrigins = [process.env.FRONTEND_URL || 'https://medikart-project.vercel.app', 'http://localhost:5173'];
+const allowedOrigins = [process.env.FRONTEND_URL || 'https://medikart-project.vercel.app', 'http://localhost:5173', 'https://medikart-backend.onrender.com'];
 
 app.use(cors({
   origin: function(origin, callback){
