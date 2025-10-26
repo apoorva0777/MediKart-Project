@@ -62,7 +62,7 @@ const CheckoutPage = () => {
       const orderData = await orderResponse.json();
 
       const options = {
-        key: window.process?.env?.REACT_APP_RAZORPAY_KEY_ID || 'rzp_test_UC8ozWhDmsJEYa', 
+        key: window.process?.env?.REACT_APP_RAZORPAY_KEY_ID || 'rzp_test_RTivx2VcL6JNAT', 
         amount: orderData.amount,
         currency: orderData.currency,
         name: 'MediKart',
@@ -105,7 +105,7 @@ const CheckoutPage = () => {
       };
 
       if (!window.process) {
-        window.process = { env: { REACT_APP_RAZORPAY_KEY_ID: 'rzp_test_UC8ozWhDmsJEYa' } };
+        window.process = { env: { REACT_APP_RAZORPAY_KEY_ID: 'rzp_test_RTivx2VcL6JNAT' } };
       }
 
       const paymentObject = new window.Razorpay(options);
